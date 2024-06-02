@@ -9,13 +9,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NavLinks } from "@/lib/constants";
+import { MobileNavLinks } from "@/lib/constants";
 
 const NavContent = () => {
   const pathname = usePathname();
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
-      {NavLinks.map(({ link, title }) => {
+      {MobileNavLinks.map(({ link, title }) => {
         const isActive =
           (pathname.includes(link) && link.length > 1) || pathname === link;
         return (

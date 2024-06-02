@@ -11,7 +11,7 @@ export default function Home() {
       <section className=" h-screen bg-landing bg-cover bg-center bg-no-repeat pb-20">
         <FilterForm />
       </section>
-      <section className="2xs:px-10 px-4 py-20 md:px-24">
+      <section className="px-4 py-20 2xs:px-10 md:px-24">
         <h2 className="h2-bold mb-8 text-center">Service Categories</h2>
         <div className="flex flex-wrap  justify-center gap-20">
           {serviceCategories.map((category) => {

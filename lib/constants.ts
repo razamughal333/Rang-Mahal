@@ -16,6 +16,17 @@ export const NavLinks = [
     link: "/contact",
   },
 ];
+export const MobileNavLinks = [
+  ...NavLinks,
+  {
+    title: "Sign In",
+    link: "/login",
+  },
+  {
+    title: "Sign Up",
+    link: "/onBoarding",
+  },
+];
 export const items = [
   {
     id: 1,
