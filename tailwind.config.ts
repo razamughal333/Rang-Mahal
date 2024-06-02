@@ -18,6 +18,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
+          900: "#DE7439",
           500: "#FF7000",
           100: "#FFF1E6",
         },
@@ -27,6 +28,7 @@ const config: Config = {
           300: "#151821",
           400: "#212734",
           500: "#101012",
+          600: "#787878",
         },
         light: {
           900: "#FFFFFF",
@@ -35,6 +37,7 @@ const config: Config = {
           700: "#DCE3F1",
           500: "#7B8EC8",
           400: "#858EAD",
+          100: "#FAFAFA",
         },
         "accent-blue": "#1DA1F2",
       },
@@ -43,19 +46,17 @@ const config: Config = {
         spaceGrotesk: ["var(--font-spaceGrotesk)"],
       },
       boxShadow: {
-        "light-100":
-          "0px 12px 20px 0px rgba(184, 184, 184, 0.03), 0px 6px 12px 0px  rgba(184, 184, 184, 0.02),0px 2px 4px 0px  rgba(184, 184, 184, 0.03)",
-        "light-200": "10px 10px 20px 0px rgba(218, 213, 213, 0.10)",
-        "light-300": "-10px 10px 20px 0px rgba(218, 213, 213, 0.10)",
-        "dark-100": "0px 2px 10px 0px rgba(46, 52, 56, 0.10)",
-        "dark-200": "2px 0px 20px 0px rgba(39, 36, 36, 0.04)",
+        "dark-1": "9px 4px 51px 12px rgba(0,0,0,0.4)",
       },
       backgroundImage: {
         "auth-dark": "url('/assets/images/auth-dark.png')",
         "auth-light": "url('/assets/images/auth-light.png')",
+        landing: "url('/images/landing-bg.png')",
       },
       screens: {
-        xs: "420px",
+        "2xs": "420px",
+        xs: "530px",
+        "1.5xl": "1408px",
       },
       keyframes: {
         "accordion-down": {
