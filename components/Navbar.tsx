@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -57,22 +58,32 @@ const Navbar = () => {
                 Help
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                href="login"
-                className="text-primary-900 transition-colors duration-300 hover:text-primary-500"
-              >
-                Sign In
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                href="onBoarding"
-                className="text-primary-900 transition-colors duration-300 hover:text-primary-500"
-              >
-                Sign Up
-              </Link>
-            </DropdownMenuItem>
+            <SignedOut>
+              <DropdownMenuItem>
+                <Link
+                  href="login"
+                  className="text-primary-900 transition-colors duration-300 hover:text-primary-500"
+                >
+                  Sign In
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="onBoarding"
+                  className="text-primary-900 transition-colors duration-300 hover:text-primary-500"
+                >
+                  Sign Up
+                </Link>
+              </DropdownMenuItem>
+            </SignedOut>
+            <SignedIn>
+              <SignOutButton>
+                <span className="cursor-pointer pl-2 text-sm text-red-500">
+                  {" "}
+                  Sign Out
+                </span>
+              </SignOutButton>
+            </SignedIn>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

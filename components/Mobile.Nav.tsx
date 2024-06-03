@@ -9,13 +9,14 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MobileNavLinks } from "@/lib/constants";
+import { NavLinks } from "@/lib/constants";
+import { SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 const NavContent = () => {
   const pathname = usePathname();
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
-      {MobileNavLinks.map(({ link, title }) => {
+      {NavLinks.map(({ link, title }) => {
         const isActive =
           (pathname.includes(link) && link.length > 1) || pathname === link;
         return (
@@ -35,6 +36,32 @@ const NavContent = () => {
           </SheetClose>
         );
       })}
+      <SheetClose asChild>
+        <SignedIn>
+          <SignOutButton>
+            <span className="cursor-pointer pl-4 text-lg font-semibold text-red-500">
+              {" "}
+              Sign Out
+            </span>
+          </SignOutButton>
+        </SignedIn>
+      </SheetClose>
+      <SheetClose asChild>
+        <SignedOut>
+          <Link
+            href="/login"
+            className="text-dark300_light900 flex items-center justify-start gap-4 bg-transparent p-4"
+          >
+            <p className="base-medium">Sign In</p>
+          </Link>
+          <Link
+            href="/onBoarding"
+            className="text-dark300_light900 flex items-center justify-start gap-4 bg-transparent p-4"
+          >
+            <p className="base-medium">Sign Up</p>
+          </Link>
+        </SignedOut>
+      </SheetClose>
     </section>
   );
 };
