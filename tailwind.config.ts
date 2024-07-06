@@ -41,6 +41,9 @@ const config: Config = {
         },
         "accent-blue": "#1DA1F2",
       },
+      gridTemplateRows: {
+        "2-max": "auto max",
+      },
       fontFamily: {
         inter: ["var(--font-inter)"],
         spaceGrotesk: ["var(--font-spaceGrotesk)"],

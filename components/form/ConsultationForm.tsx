@@ -55,12 +55,9 @@ export default function ConsultationForm() {
           render={({ field }) => (
             <FormItem className="relative min-w-[210px]">
               <FormControl>
-                <Input
-                  className="peer w-full rounded-none border-0 border-b-2 border-b-gray-300 outline-none transition-colors duration-300 focus:border-b-primary-500"
-                  {...field}
-                />
+                <Input className="form-input peer" {...field} />
               </FormControl>
-              <FormLabel className="absolute left-2 top-2 text-gray-400 transition-all duration-300 peer-focus:left-0 peer-focus:top-[-16px] peer-focus:text-xs">
+              <FormLabel className="form-input-label peer-focus:text-xs">
                 Full Name
               </FormLabel>
             </FormItem>

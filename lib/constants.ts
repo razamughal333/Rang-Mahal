@@ -124,3 +124,116 @@ export const socialLinks = [
     link: "/saloons",
   },
 ];
+export const businessTypes = [
+  {
+    imgUrl: "/icons/camera-onboard.svg",
+    title: "Photographer",
+  },
+  {
+    imgUrl: "/icons/venue-onboard.svg",
+    title: "Wedding Avenues",
+  },
+  {
+    imgUrl: "/icons/decor-onboard.svg",
+    title: "Decor",
+  },
+  {
+    imgUrl: "/icons/catering-onboard.svg",
+    title: "Catering",
+  },
+  {
+    imgUrl: "/icons/salon-onboard.svg",
+    title: "Salon",
+  },
+];
+export const socialDetails = [
+  {
+    id: 1,
+    title: "Instagram Link",
+    formName: "insta_link",
+    required: true,
+  },
+  {
+    id: 2,
+    title: "Facebook Link",
+    formName: "fb_link",
+  },
+  {
+    id: 3,
+    title: "Booking Email",
+    formName: "booking_email",
+    required: true,
+  },
+  {
+    id: 4,
+    title: "Website",
+    formName: "web",
+  },
+  {
+    id: 5,
+    title: "City",
+    formName: "city",
+    required: true,
+  },
+  {
+    id: 6,
+    title: "Office Address",
+    formName: "office_address",
+  },
+  {
+    id: 7,
+    title: "Office Google Link",
+    formName: "office_google_link",
+  },
+];
+export const CITIES = [
+  {
+    title: "Lahore",
+    value: "lahore",
+  },
+  {
+    title: "Karachi",
+    value: "Karachi",
+  },
+  {
+    title: "Islamabad",
+    value: "Islamabad",
+  },
+  {
+    title: "Rawalpindi",
+    value: "Rawalpindi",
+  },
+  {
+    title: "Major Cities",
+    value: "major",
+  },
+  {
+    title: "All Pakistan",
+    value: "all",
+  },
+];
+export const STAFF = [
+  {
+    imgUrl: "/icons/male.svg",
+    fieldName: "male_staff",
+    title: "MALE",
+  },
+  {
+    imgUrl: "/icons/female.svg",
+    fieldName: "female_staff",
+    title: "FEMALE",
+  },
+  {
+    imgUrl: "/icons/transgender.svg",
+    fieldName: "transgender_staff",
+    title: "TRANSGENDER",
+  },
+];
+export const TABS = [
+  "account",
+  "businessType",
+  "personal_details",
+  "contact_details",
+  "business_details",
+  "packages",
+];
