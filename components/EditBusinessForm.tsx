@@ -2,14 +2,13 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import Link from "next/link";
-import { TABS } from "@/lib/constants";
+import { VENDORTABS } from "@/lib/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { formSchema } from "@/components/tabs/Schema";
 
 import { Form } from "@/components/ui/form";
-import AccountTab from "@/components/tabs/AccountTab";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import BusinessTypeTab from "@/components/tabs/BusinessTypeTab";
@@ -18,52 +17,53 @@ import ContactDetailsTab from "@/components/tabs/ContactDetailsTab";
 import BusinessDetailsTab from "@/components/tabs/BusinessDetailsTab";
 import PackagesTab from "@/components/tabs/PackagesTab";
 import { useToast } from "@/components/ui/use-toast";
-import { createBusiness } from "@/lib/actions/bussiness.action";
+import { editBusiness } from "@/lib/actions/bussiness.action";
 
-const Page = () => {
+const EditBusinessForm = ({ business, id }: any) => {
   const [currentTab, setCurrentTab] = useState<number>(0);
+
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      accountType: "",
-      category: "",
-      full_name: "",
-      email: "",
-      phone: "",
+      accountType: business.accountType || "",
+      category: business.category || "",
+      full_name: business.full_name || "",
+      email: business.email || "",
+      phone: business.phone || "",
       password: "",
-      confirmPassword: "",
-      terms: false,
-      contactNumber: "",
-      secondaryContactNumber: "",
-      insta_link: "",
-      fb_link: "",
-      logo: "",
-      brand_name: "",
-      booking_email: "",
-      web: "",
-      city: "",
-      office_address: "",
-      office_google_link: "",
-      cities: [],
-      male_staff: false,
-      female_staff: false,
-      transgender_staff: false,
-      minPrice: "",
-      description: "",
-      additionalInfo: "",
-      downPayment: "",
-      downPaymentType: "percentage",
-      refundable: "",
-      packages: [
+      confirmPassword: business.confirmPassword || "",
+      terms: business.terms || false,
+      contactNumber: business.contactNumber || "",
+      secondaryContactNumber: business.secondaryContactNumber || "",
+      insta_link: business.insta_link || "",
+      fb_link: business.fb_link || "",
+      logo: business.logo || "",
+      brand_name: business.brand_name || "",
+      booking_email: business.booking_email || "",
+      web: business.web || "",
+      city: business.city || "",
+      office_address: business.office_address || "",
+      office_google_link: business.office_google_link || "",
+      cities: business.cities || [],
+      male_staff: business.male_staff || false,
+      female_staff: business.female_staff || false,
+      transgender_staff: business.transgender_staff || false,
+      minPrice: business.minPrice?.toString() || "",
+      description: business.description || "",
+      additionalInfo: business.additionalInfo || "",
+      downPayment: business.downPayment?.toString() || "",
+      downPaymentType: business.downPaymentType || "percentage",
+      refundable: business.refundable || "",
+      packages: business.packages || [
         {
           packageName: "",
           packagePrice: "",
           services: "",
         },
       ],
-      images: [],
+      images: business.images || [],
     },
   });
   function decrementCurrentTab() {
@@ -74,19 +74,8 @@ const Page = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    if (values.accountType === "customer") {
-      router.push("/login");
-    }
     console.log(values);
-    if (values.accountType === "" && currentTab === 0) {
-      toast({
-        variant: "destructive",
-        title: "Invalid selection",
-        description: "Please select a account type",
-      });
-      return;
-    }
-    if (values.category === "" && currentTab === 1) {
+    if (values.category === "" && currentTab === 0) {
       toast({
         variant: "destructive",
         title: "Invalid selection",
@@ -95,12 +84,8 @@ const Page = () => {
       return;
     }
     if (
-      (values.full_name === "" ||
-        values.email === "" ||
-        values.phone === "" ||
-        values.password === "" ||
-        values.confirmPassword === "") &&
-      currentTab === 2
+      (values.full_name === "" || values.email === "" || values.phone === "") &&
+      currentTab === 1
     ) {
       toast({
         variant: "destructive",
@@ -109,7 +94,7 @@ const Page = () => {
       });
       return;
     }
-    if (values.password !== values.confirmPassword && currentTab === 2) {
+    if (values.password !== values.confirmPassword && currentTab === 1) {
       toast({
         variant: "destructive",
         description: "password doesn't match",
@@ -117,7 +102,11 @@ const Page = () => {
       return;
     }
     const regex = /(?=.*\d)(?=.*[!@#$%^&*])/;
-    if (!regex.test(values.password) && currentTab === 2) {
+    if (
+      !regex.test(values.password) &&
+      values.password !== "" &&
+      currentTab === 1
+    ) {
       toast({
         variant: "destructive",
         description:
@@ -125,7 +114,7 @@ const Page = () => {
       });
       return;
     }
-    if (values.terms === false && currentTab === 2) {
+    if (values.terms === false && currentTab === 1) {
       toast({
         variant: "destructive",
         description: "Please accept the terms",
@@ -138,7 +127,7 @@ const Page = () => {
         values.insta_link === "" ||
         values.booking_email === "" ||
         values.city === "") &&
-      currentTab === 3
+      currentTab === 2
     ) {
       toast({
         variant: "destructive",
@@ -155,7 +144,7 @@ const Page = () => {
         values.minPrice === "" ||
         values.refundable === "" ||
         values.description === "") &&
-      currentTab === 4
+      currentTab === 3
     ) {
       toast({
         variant: "destructive",
@@ -170,22 +159,22 @@ const Page = () => {
     Object.values(values.images).forEach((file) => {
       images.append("file", file);
     });
-    if (!(currentTab === TABS.length - 1)) {
+    if (!(currentTab === VENDORTABS.length - 1)) {
       setCurrentTab(currentTab + 1);
     } else {
-      const res = await createBusiness({
+      const res = await editBusiness({
         business: JSON.stringify({ ...values, logo }),
         logo,
         images,
-        rePath: "/",
+        rePath: "/services",
+        id,
       });
       const parsedRes = JSON.parse(res);
       console.log(parsedRes);
       if (parsedRes!.success) {
         toast({
           variant: "default",
-          title: "Business Registered Successfully",
-          description: "Your business has been registered successfully",
+          description: "Business edited successfully",
         });
         router.push(`/service/${parsedRes!.business._id}`);
       }
@@ -195,42 +184,25 @@ const Page = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs
-          value={TABS[currentTab]}
-          className="flex h-full min-h-screen flex-col items-center gap-10"
+          value={VENDORTABS[currentTab]}
+          className="mt-12 flex h-full min-h-screen flex-col items-center gap-10"
         >
-          <div className="mr-4 mt-4 self-end">
-            <p>Having trouble?</p>
-            <Link href="/contact=us" className="font-medium text-primary-900">
-              Get Help
-            </Link>
-          </div>
-          <TabsContent value="account" className="h-full">
-            <AccountTab form={form} />
-          </TabsContent>
           <TabsContent className="w-full" value="businessType">
-            <BusinessTypeTab form={form} />
+            <BusinessTypeTab form={form} edit={true} />
           </TabsContent>
           <TabsContent value="personal_details">
-            <PersonalDetailsTab form={form} />
+            <PersonalDetailsTab form={form} edit={true} />
           </TabsContent>
           <TabsContent value="contact_details">
             <ContactDetailsTab form={form} />
           </TabsContent>
           <TabsContent value="business_details">
-            <BusinessDetailsTab form={form} />
+            <BusinessDetailsTab form={form} edit={true} />
           </TabsContent>
           <TabsContent value="packages">
             <PackagesTab form={form} />
           </TabsContent>
           <div className="flex gap-8 py-2 max-2xs:flex-col-reverse">
-            {currentTab <= 2 && (
-              <span>
-                <p>Already a member? </p>
-                <Link href="/login" className="text-primary-900">
-                  Login
-                </Link>
-              </span>
-            )}
             <TabsList className={`flex ${currentTab > 2 ? "gap-12" : "gap-6"}`}>
               {currentTab <= 1 ? (
                 <Link
@@ -253,7 +225,7 @@ const Page = () => {
                 type="submit"
                 className="rounded-full bg-primary-900 px-8 text-light-800 transition-colors duration-300 hover:bg-primary-500"
               >
-                {currentTab === TABS.length - 1 ? "Submit" : "Next"}
+                {currentTab === VENDORTABS.length - 1 ? "Edit" : "Next"}
               </Button>
             </TabsList>
           </div>
@@ -263,4 +235,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default EditBusinessForm;

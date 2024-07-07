@@ -23,7 +23,7 @@ import { RadioGroup } from "@radix-ui/react-radio-group";
 import { RadioGroupItem } from "../ui/radio-group";
 import { useToast } from "../ui/use-toast";
 
-const BusinessDetailsTab = ({ form }: any) => {
+const BusinessDetailsTab = ({ form, edit }: any) => {
   const { toast } = useToast();
   const handleSelectCity = (city: string, field: any) => {
     const cityValue = city.trim();
@@ -54,11 +54,15 @@ const BusinessDetailsTab = ({ form }: any) => {
   return (
     <div className="flex flex-col gap-6 px-6">
       <h2 className="h2-bold">Business Details</h2>
-      <p>
-        Want to start your business with us?
-        <br />
-        Enter your following info below
-      </p>
+      {edit ? (
+        <p>Edit Your Business Details</p>
+      ) : (
+        <p>
+          Want to start your business with us?
+          <br />
+          Enter your following info below
+        </p>
+      )}
       <div>
         <FormField
           control={form.control}

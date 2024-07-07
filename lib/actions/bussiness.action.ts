@@ -47,10 +47,6 @@ export async function createBusiness(params: any) {
     if (file) {
       logoFileName = getFileName(newLogo);
       await uploadFile(file, UPLOADDIR, logoFileName);
-    } else {
-      return JSON.stringify({
-        success: false,
-      });
     }
     const imagesFileNames = [];
     for (const image of images) {
@@ -70,6 +66,66 @@ export async function createBusiness(params: any) {
       password: hashPassword,
     });
     revalidatePath(rePath);
+    return JSON.stringify({
+      success: true,
+      business: newBusiness,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function editBusiness(params: any) {
+  try {
+    connectToDatabase();
+    const { business, rePath, logo, images, id } = params;
+    const parsedbusiness = JSON.parse(business);
+
+    if (!fs.existsSync(UPLOAD_DIR)) {
+      fs.mkdirSync(UPLOAD_DIR);
+    }
+    const UPLOADDIR = path.resolve(
+      process.env.ROOT_PATH ?? "",
+      `public/uploads/${parsedbusiness.brand_name}`
+    );
+    const newLogo = Object.fromEntries(logo);
+    const file = (newLogo.file as Blob) || null;
+    let logoFileName = "";
+    if (file) {
+      logoFileName = getFileName(newLogo);
+      await uploadFile(file, UPLOADDIR, logoFileName);
+    }
+    const imagesFileNames = [];
+    for (const image of images) {
+      const newImage = (image[1] as Blob) || null;
+      if (newImage) {
+        const fileName = getFileName(image[1]);
+        await uploadFile(newImage, UPLOADDIR, fileName);
+        imagesFileNames.push(fileName);
+      }
+    }
+    let newBusiness;
+    if (parsedbusiness.password) {
+      const hashPassword = await bcrypt.hash(parsedbusiness.password, 10);
+      delete parsedbusiness.confirmPassword;
+      newBusiness = await Business.findByIdAndDelete(id, {
+        ...parsedbusiness,
+        logo: logoFileName,
+        images: imagesFileNames,
+        password: hashPassword,
+      });
+    } else {
+      delete parsedbusiness.confirmPassword;
+      delete parsedbusiness.password;
+      newBusiness = await Business.findByIdAndUpdate(id, {
+        ...parsedbusiness,
+        logo: logoFileName,
+        images: imagesFileNames,
+      });
+    }
+
+    revalidatePath(rePath);
+
     return JSON.stringify({
       success: true,
       business: newBusiness,
@@ -121,6 +177,25 @@ export async function getBusinessesById(id: string) {
     const business = await Business.findById(id);
     return JSON.stringify({
       business,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function getBusinessesByEmail(email: string, password: string) {
+  try {
+    connectToDatabase();
+    const business = await Business.findOne({ email });
+    console.log(business);
+    let res = false;
+    if (business) {
+      res = await bcrypt.compare(password, business.password);
+    }
+    console.log(res);
+    return JSON.stringify({
+      success: res,
+      id: business._id,
     });
   } catch (error) {
     console.log(error);

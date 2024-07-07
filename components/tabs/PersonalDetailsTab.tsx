@@ -6,13 +6,19 @@ import "react-phone-number-input/style.css";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 
-const PersonalDetailsTab = ({ form }: any) => {
+const PersonalDetailsTab = ({ form, edit }: any) => {
   return (
     <div className="flex flex-col gap-6 px-6">
       <h2 className="h2-bold">Personal Details</h2>
       <p className="text-sm">
-        Listing your business is only a few steps away.
-        <br /> Enter your following info.
+        {edit ? (
+          <>Edit your personal details</>
+        ) : (
+          <>
+            Listing your business is only a few steps away.
+            <br /> Enter your following info.
+          </>
+        )}
       </p>
       <FormField
         control={form.control}

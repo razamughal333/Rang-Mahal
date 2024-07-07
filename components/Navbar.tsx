@@ -52,7 +52,7 @@ const Navbar = () => {
           <DropdownMenuContent className="mr-8 bg-light-700">
             <DropdownMenuItem>
               <Link
-                href="contact-us"
+                href="/contact-us"
                 className="text-dark-400/80 transition-colors duration-300 hover:text-dark-100"
               >
                 Help
@@ -61,7 +61,7 @@ const Navbar = () => {
             <SignedOut>
               <DropdownMenuItem>
                 <Link
-                  href="login"
+                  href="/login"
                   className="text-primary-900 transition-colors duration-300 hover:text-primary-500"
                 >
                   Sign In
@@ -69,7 +69,7 @@ const Navbar = () => {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link
-                  href="onBoarding"
+                  href="/onBoarding"
                   className="text-primary-900 transition-colors duration-300 hover:text-primary-500"
                 >
                   Sign Up

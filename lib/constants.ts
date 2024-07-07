@@ -39,27 +39,27 @@ export const items = [
 export const businessTypes = [
   {
     imgUrl: "/icons/camera-onboard.svg",
-    title: "Photographer",
+    title: "photographer",
     value: "photographer",
   },
   {
     imgUrl: "/icons/venue-onboard.svg",
-    title: "Wedding Avenues",
+    title: "wedding_avenue",
     value: "wedding_avenue",
   },
   {
     imgUrl: "/icons/decor-onboard.svg",
-    title: "Decor",
+    title: "decoration",
     value: "decoration",
   },
   {
     imgUrl: "/icons/catering-onboard.svg",
-    title: "Catering",
+    title: "catering",
     value: "catering",
   },
   {
     imgUrl: "/icons/salon-onboard.svg",
-    title: "Saloon",
+    title: "saloon",
     value: "saloon",
   },
 ];
@@ -257,6 +257,13 @@ export const STAFF = [
 ];
 export const TABS = [
   "account",
+  "businessType",
+  "personal_details",
+  "contact_details",
+  "business_details",
+  "packages",
+];
+export const VENDORTABS = [
   "businessType",
   "personal_details",
   "contact_details",

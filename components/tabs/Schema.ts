@@ -41,3 +41,7 @@ export const formSchema = z.object({
   ),
   images: z.array(z.any()),
 });
+export const vendorFormSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});

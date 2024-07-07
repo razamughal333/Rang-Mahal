@@ -10,13 +10,14 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Image from "next/image";
 import { businessTypes } from "@/lib/constants";
 
-const BusinessTypeTab = ({ form }: any) => {
+const BusinessTypeTab = ({ form, edit }: any) => {
   return (
     <div className="flex-center h-full flex-col gap-8">
       <h1 className="h3-bold">
-        Join Rang <span className="text-primary-900">Mahal</span>
+        {edit ? "" : "Join "}Rang{" "}
+        <span className="text-primary-900">Mahal</span>
       </h1>
-      <p>What is your line of business?</p>
+      <p>{edit ? "Edit your Business" : "What is your line of business?"}</p>
       <FormField
         control={form.control}
         name="category"
