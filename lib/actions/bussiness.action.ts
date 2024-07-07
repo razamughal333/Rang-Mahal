@@ -202,3 +202,51 @@ export async function getBusinessesByEmail(email: string, password: string) {
     throw error;
   }
 }
+export async function getAllBusinesses() {
+  try {
+    connectToDatabase();
+    const businesses = await Business.find({});
+    return JSON.stringify(businesses);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function verifyBusinesses(id: string) {
+  try {
+    connectToDatabase();
+    const business = await Business.findByIdAndUpdate(id, { status: true });
+    revalidatePath("/adminPanel");
+    if (business) {
+      return JSON.stringify({
+        success: true,
+      });
+    } else {
+      return JSON.stringify({
+        success: false,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function deleteBusinesses(id: string) {
+  try {
+    connectToDatabase();
+    const business = await Business.findByIdAndDelete(id);
+    revalidatePath("/adminPanel");
+    if (business) {
+      return JSON.stringify({
+        success: true,
+      });
+    } else {
+      return JSON.stringify({
+        success: false,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

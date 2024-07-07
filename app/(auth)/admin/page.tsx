@@ -15,8 +15,8 @@ import {
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { getBusinessesByEmail } from "@/lib/actions/bussiness.action";
 import { Input } from "@/components/ui/input";
+import { authenticateAdmin } from "@/lib/actions/admin.action";
 
 const Page = () => {
   const router = useRouter();
@@ -38,7 +38,7 @@ const Page = () => {
         description: "Please provide your credentials",
       });
     }
-    const res = await getBusinessesByEmail(values.email, values.password);
+    const res = await authenticateAdmin(values.email, values.password);
     const parsedRes = JSON.parse(res);
     if (!parsedRes.success) {
       toast({
@@ -47,7 +47,7 @@ const Page = () => {
         description: "Please provide valid credentials",
       });
     } else {
-      router.push(`/vendor/${parsedRes.id}`);
+      router.push(`/adminPanel`);
     }
   }
   return (
@@ -56,7 +56,8 @@ const Page = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex-center h-screen w-full flex-col gap-4"
       >
-        <h2 className="h2-semibold mb-3">Login as Vendor</h2>
+        <h2 className="h2-semibold mb-3">Admin Panel</h2>
+        <p className="paragraph-regular mb-3">Enter admin credentials</p>
         <div className="flex flex-col items-center justify-center gap-8">
           <FormField
             control={form.control}

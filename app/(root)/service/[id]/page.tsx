@@ -1,5 +1,5 @@
 import Images from "@/components/Images";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { getBusinessesById } from "@/lib/actions/bussiness.action";
 import Image from "next/image";
 import React from "react";
@@ -34,9 +34,9 @@ const page = async ({ params }: any) => {
               brand_name={parsedBusiness.brand_name}
               images={parsedBusiness.images}
             />
-            <Button className="h-max rounded-3xl bg-primary-900 px-6 py-2 text-light-900 duration-300 hover:bg-primary-500">
+            {/* <Button className="h-max rounded-3xl bg-primary-900 px-6 py-2 text-light-900 duration-300 hover:bg-primary-500">
               Book Now
-            </Button>
+            </Button> */}
           </div>
         </div>
         <div className="my-4 h-[2px] w-full bg-gray-400 px-4"></div>
