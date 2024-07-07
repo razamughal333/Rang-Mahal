@@ -1,9 +1,9 @@
-import ConsultationForm from "@/components/form/ConsultationForm";
 import FilterForm from "@/components/form/FilterForm";
 import CarouselParent from "@/components/home/CarouselParent";
 import { Button } from "@/components/ui/button";
 import { serviceCategories } from "@/lib/constants";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,7 +16,8 @@ export default function Home() {
         <div className="flex flex-wrap  justify-center gap-20">
           {serviceCategories.map((category) => {
             return (
-              <div
+              <Link
+                href={category.url}
                 key={category.title}
                 className="flex w-[128px] flex-col items-center gap-2"
               >
@@ -28,7 +29,7 @@ export default function Home() {
                   className="size-[128px] rounded-[50%]"
                 />
                 <p className="w-full text-wrap text-center">{category.title}</p>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -80,10 +81,6 @@ export default function Home() {
           height={800}
           className="h-[520px] w-[400px] justify-self-end border-[5px] border-white object-cover shadow-dark-1 lg:row-start-1 lg:max-1.5xl:col-start-2 1.5xl:row-end-3"
         />
-      </section>
-      <section className="px-8 py-20 md:px-24">
-        <h1 className="h1-bold text-center">Reserve a Consultation</h1>
-        <ConsultationForm />
       </section>
     </>
   );

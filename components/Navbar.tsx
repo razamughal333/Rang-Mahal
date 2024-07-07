@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link
               key={title}
               href={link}
-              className={`${isActive ? "bg-primary-900" : "duration-300 hover:text-primary-500"} rounded-3xl  px-4 py-2`}
+              className={`${isActive ? "bg-primary-900 " : "duration-300 hover:text-primary-500"} rounded-3xl  px-4 py-2 ${pathname === "/" ? "" : isActive ? "text-light-700" : "text-dark-100"}`}
             >
               {title}
             </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
               alt="menu"
               width={36}
               height={36}
-              className="cursor-pointer"
+              className={`cursor-pointer ${pathname !== "/" ? "invert" : ""}`}
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mr-8 bg-light-700">

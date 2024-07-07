@@ -26,16 +26,16 @@ export const formSchema = z.object({
   male_staff: z.boolean(),
   female_staff: z.boolean(),
   transgender_staff: z.boolean(),
-  minPrice: z.number(),
+  minPrice: z.string(),
   description: z.string(),
   additionalInfo: z.string(),
-  downPayment: z.number(),
+  downPayment: z.string(),
   downPaymentType: z.string(),
   refundable: z.string(),
   packages: z.array(
     z.object({
       packageName: z.string(),
-      packagePrice: z.number(),
+      packagePrice: z.string(),
       services: z.string(),
     })
   ),

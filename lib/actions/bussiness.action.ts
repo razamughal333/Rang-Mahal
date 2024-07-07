@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 "use server";
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "../mongoose";
@@ -72,6 +73,54 @@ export async function createBusiness(params: any) {
     return JSON.stringify({
       success: true,
       business: newBusiness,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function getBusinessesByFilter(category: string, filters: any) {
+  try {
+    connectToDatabase();
+    let cities = [];
+    if (filters.cities !== "" && filters.cities) {
+      cities = filters.cities.split(",").filter((el: any) => el !== "");
+    }
+    let staff = [];
+    let newStaff = {};
+    if (filters.staff !== "" && filters.staff) {
+      staff = filters.staff.split(",").filter((el: any) => el !== "");
+      for (const st of staff) {
+        if (st === "male") {
+          newStaff = { ...newStaff, male_staff: true };
+        } else if (st === "female") {
+          newStaff = { ...newStaff, female_staff: true };
+        } else if (st === "transgender") {
+          newStaff = { ...newStaff, transgender_staff: true };
+        }
+      }
+    }
+    if (cities.length !== 0) {
+      newStaff = { ...newStaff, cities: { $in: cities } };
+    }
+    const businesses = await Business.find({
+      category,
+      ...newStaff,
+    });
+    return JSON.stringify({
+      businesses,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function getBusinessesById(id: string) {
+  try {
+    connectToDatabase();
+    const business = await Business.findById(id);
+    return JSON.stringify({
+      business,
     });
   } catch (error) {
     console.log(error);

@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   category: z.string(),
@@ -20,6 +21,7 @@ const formSchema = z.object({
 });
 
 export default function FilterForm() {
+  const router = useRouter();
   const { toast } = useToast();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -41,7 +43,8 @@ export default function FilterForm() {
         description: "Please select a category or location",
       });
     }
-    console.log(values);
+    const newUrl = `/services/${values.category}?cities=%2C${values.location}`;
+    router.push(newUrl);
   }
   return (
     <Form {...form}>
@@ -61,13 +64,17 @@ export default function FilterForm() {
                 >
                   <FormControl>
                     <SelectTrigger className=" h3-semibold rounded-lg border-2 p-6 text-white">
-                      <SelectValue placeholder="select Category" />
+                      <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="h3-semibold border-2 text-light-700">
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                  <SelectContent className="h3-semibold border-2 bg-dark-100/50 text-light-700">
+                    <SelectItem value="photographer">Photographer</SelectItem>
+                    <SelectItem value="wedding_avenue">
+                      Wedding Avenue
+                    </SelectItem>
+                    <SelectItem value="saloon">Saloon</SelectItem>
+                    <SelectItem value="catering">Catering</SelectItem>
+                    <SelectItem value="decoration">Decoration</SelectItem>
                   </SelectContent>
                 </Select>
               </FormItem>
@@ -87,10 +94,11 @@ export default function FilterForm() {
                       <SelectValue placeholder="select Location" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="h3-semibold border-2 text-light-700">
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                  <SelectContent className="h3-semibold border-2 bg-dark-100/50 text-light-700">
+                    <SelectItem value="Lahore">Lahore</SelectItem>
+                    <SelectItem value="Karachi">Karachi</SelectItem>
+                    <SelectItem value="Islamabad">Islamabad</SelectItem>
+                    <SelectItem value="Rawalpindi">Rawalpindi</SelectItem>
                   </SelectContent>
                 </Select>
               </FormItem>

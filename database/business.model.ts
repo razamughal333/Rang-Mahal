@@ -24,10 +24,10 @@ const BusinessSchema = new Schema({
   male_staff: { type: Boolean },
   female_staff: { type: Boolean },
   transgender_staff: { type: Boolean },
-  minPrice: { type: Number },
+  minPrice: { type: String },
   description: { type: String },
   additionalInfo: { type: String },
-  downPayment: { type: Number },
+  downPayment: { type: String },
   downPaymentType: { type: String },
   refundable: { type: String },
   packages: {

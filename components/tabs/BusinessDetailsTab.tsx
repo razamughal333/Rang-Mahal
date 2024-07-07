@@ -184,12 +184,7 @@ const BusinessDetailsTab = ({ form }: any) => {
         render={({ field }) => (
           <FormItem className="relative ">
             <FormControl>
-              <Input
-                placeholder=""
-                type="number"
-                className="form-input peer"
-                {...field}
-              />
+              <Input placeholder="" className="form-input peer" {...field} />
             </FormControl>
             <FormLabel className="form-input-label peer-focus:text-xs">
               Minimum Price

@@ -22,7 +22,7 @@ const PackagesTab = ({ form }: any) => {
     const packages = form.getValues().packages;
     packages.push({
       packageName: "",
-      packagePrice: 0,
+      packagePrice: "",
       services: "",
     });
     form.setValue("packages", packages);
@@ -58,6 +58,7 @@ const PackagesTab = ({ form }: any) => {
                           <Input
                             className="form-input peer"
                             placeholder=""
+                            value={item.packageName}
                             onChange={(e) =>
                               handlePackages(e, field, "name", idx)
                             }
@@ -73,6 +74,7 @@ const PackagesTab = ({ form }: any) => {
                           <Input
                             className="form-input peer"
                             placeholder=""
+                            value={item.packagePrice}
                             type="number"
                             onChange={(e) =>
                               handlePackages(e, field, "price", idx)
@@ -89,6 +91,7 @@ const PackagesTab = ({ form }: any) => {
                       <FormControl>
                         <Textarea
                           placeholder=""
+                          defaultValue={item.services}
                           onChange={(e) =>
                             handlePackages(e, field, "service", idx)
                           }

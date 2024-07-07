@@ -50,16 +50,16 @@ const Page = () => {
       male_staff: false,
       female_staff: false,
       transgender_staff: false,
-      minPrice: 0,
+      minPrice: "",
       description: "",
       additionalInfo: "",
-      downPayment: 0,
-      downPaymentType: "",
+      downPayment: "",
+      downPaymentType: "percentage",
       refundable: "",
       packages: [
         {
           packageName: "",
-          packagePrice: 0,
+          packagePrice: "",
           services: "",
         },
       ],
@@ -78,92 +78,92 @@ const Page = () => {
       router.push("/login");
     }
     console.log(values);
-    // if (values.accountType === "" && currentTab === 0) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Invalid selection",
-    //     description: "Please select a account type",
-    //   });
-    //   return;
-    // }
-    // if (values.category === "" && currentTab === 1) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Invalid selection",
-    //     description: "Please select a category",
-    //   });
-    //   return;
-    // }
-    // if (
-    //   (values.full_name === "" ||
-    //     values.email === "" ||
-    //     values.phone === "" ||
-    //     values.password === "" ||
-    //     values.confirmPassword === "") &&
-    //   currentTab === 2
-    // ) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Invalid selection",
-    //     description: "Please provide all the required fields",
-    //   });
-    //   return;
-    // }
-    // if (values.password !== values.confirmPassword && currentTab === 2) {
-    //   toast({
-    //     variant: "destructive",
-    //     description: "password doesn't match",
-    //   });
-    //   return;
-    // }
-    // const regex = /(?=.*\d)(?=.*[!@#$%^&*])/;
-    // if (!regex.test(values.password) && currentTab === 2) {
-    //   toast({
-    //     variant: "destructive",
-    //     description:
-    //       "password should contain atleast 1 digit and 1 special character",
-    //   });
-    //   return;
-    // }
-    // if (values.terms === false && currentTab === 2) {
-    //   toast({
-    //     variant: "destructive",
-    //     description: "Please accept the terms",
-    //   });
-    //   return;
-    // }
-    // if (
-    //   (values.brand_name === "" ||
-    //     values.contactNumber === "" ||
-    //     values.insta_link === "" ||
-    //     values.booking_email === "" ||
-    //     values.city === "") &&
-    //   currentTab === 3
-    // ) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Invalid selection",
-    //     description: "Please provide all the required fields",
-    //   });
-    //   return;
-    // }
-    // if (
-    //   (values.cities.length === 0 ||
-    //     values.male_staff === false ||
-    //     values.female_staff === false ||
-    //     values.transgender_staff === false ||
-    //     values.minPrice === 0 ||
-    //     values.refundable === "" ||
-    //     values.description === "") &&
-    //   currentTab === 4
-    // ) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Invalid selection",
-    //     description: "Please provide all the required fields",
-    //   });
-    //   return;
-    // }
+    if (values.accountType === "" && currentTab === 0) {
+      toast({
+        variant: "destructive",
+        title: "Invalid selection",
+        description: "Please select a account type",
+      });
+      return;
+    }
+    if (values.category === "" && currentTab === 1) {
+      toast({
+        variant: "destructive",
+        title: "Invalid selection",
+        description: "Please select a category",
+      });
+      return;
+    }
+    if (
+      (values.full_name === "" ||
+        values.email === "" ||
+        values.phone === "" ||
+        values.password === "" ||
+        values.confirmPassword === "") &&
+      currentTab === 2
+    ) {
+      toast({
+        variant: "destructive",
+        title: "Invalid selection",
+        description: "Please provide all the required fields",
+      });
+      return;
+    }
+    if (values.password !== values.confirmPassword && currentTab === 2) {
+      toast({
+        variant: "destructive",
+        description: "password doesn't match",
+      });
+      return;
+    }
+    const regex = /(?=.*\d)(?=.*[!@#$%^&*])/;
+    if (!regex.test(values.password) && currentTab === 2) {
+      toast({
+        variant: "destructive",
+        description:
+          "password should contain atleast 1 digit and 1 special character",
+      });
+      return;
+    }
+    if (values.terms === false && currentTab === 2) {
+      toast({
+        variant: "destructive",
+        description: "Please accept the terms",
+      });
+      return;
+    }
+    if (
+      (values.brand_name === "" ||
+        values.contactNumber === "" ||
+        values.insta_link === "" ||
+        values.booking_email === "" ||
+        values.city === "") &&
+      currentTab === 3
+    ) {
+      toast({
+        variant: "destructive",
+        title: "Invalid selection",
+        description: "Please provide all the required fields",
+      });
+      return;
+    }
+    if (
+      (values.cities.length === 0 ||
+        (values.male_staff === false &&
+          values.female_staff === false &&
+          values.transgender_staff === false) ||
+        values.minPrice === "" ||
+        values.refundable === "" ||
+        values.description === "") &&
+      currentTab === 4
+    ) {
+      toast({
+        variant: "destructive",
+        title: "Invalid selection",
+        description: "Please provide all the required fields",
+      });
+      return;
+    }
     const logo = new FormData();
     const images = new FormData();
     logo.append("file", values.logo);
@@ -179,7 +179,16 @@ const Page = () => {
         images,
         rePath: "/",
       });
-      console.log(res);
+      const parsedRes = JSON.parse(res);
+      console.log(parsedRes);
+      if (parsedRes!.success) {
+        toast({
+          variant: "default",
+          title: "Business Registered Successfully",
+          description: "Your business has been registered successfully",
+        });
+        // router.push(`/business/${parsedRes!.business._id}`);
+      }
     }
   }
   return (

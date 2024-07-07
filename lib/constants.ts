@@ -5,7 +5,7 @@ export const NavLinks = [
   },
   {
     title: "Services",
-    link: "/services",
+    link: "/services/photographer",
   },
   {
     title: "About",
@@ -36,26 +36,58 @@ export const items = [
     imageUrl: "/images/landing-bg.png",
   },
 ];
+export const businessTypes = [
+  {
+    imgUrl: "/icons/camera-onboard.svg",
+    title: "Photographer",
+    value: "photographer",
+  },
+  {
+    imgUrl: "/icons/venue-onboard.svg",
+    title: "Wedding Avenues",
+    value: "wedding_avenue",
+  },
+  {
+    imgUrl: "/icons/decor-onboard.svg",
+    title: "Decor",
+    value: "decoration",
+  },
+  {
+    imgUrl: "/icons/catering-onboard.svg",
+    title: "Catering",
+    value: "catering",
+  },
+  {
+    imgUrl: "/icons/salon-onboard.svg",
+    title: "Saloon",
+    value: "saloon",
+  },
+];
 export const serviceCategories = [
   {
     img: "/images/services/photography.jpg",
     title: "Photographer/ Videographer",
+    url: "/services/photographer",
   },
   {
     img: "/images/services/wedding.jpg",
     title: "Wedding Avenues",
+    url: "/services/wedding_avenue",
   },
   {
     img: "/images/services/decoration.jpg",
     title: "Decorators",
+    url: "/services/decoration",
   },
   {
     img: "/images/services/cattering.jpg",
     title: "Catering Services",
+    url: "/services/catering",
   },
   {
     img: "/images/services/photography.jpg",
     title: "Saloons",
+    url: "/services/saloon",
   },
 ];
 export const footerLinks = [
@@ -64,23 +96,23 @@ export const footerLinks = [
     footerLinks: [
       {
         title: "Wedding Avenues",
-        link: "/wedding-avenues",
+        link: "/services/wedding-avenues",
       },
       {
         title: "Decorators",
-        link: "/decorators",
+        link: "/services/decorators",
       },
       {
         title: "Catering",
-        link: "/catering",
+        link: "/services/catering",
       },
       {
         title: "Saloons",
-        link: "/saloons",
+        link: "/services/saloons",
       },
       {
         title: "Photography",
-        link: "/photography",
+        link: "/services/photography",
       },
     ],
   },
@@ -89,19 +121,15 @@ export const footerLinks = [
     footerLinks: [
       {
         title: "About-Us",
-        link: "/wedding-avenues",
-      },
-      {
-        title: "Careers",
-        link: "/decorators",
+        link: "/about-us",
       },
       {
         title: "Contact-Us",
-        link: "/catering",
+        link: "/contact",
       },
       {
         title: "Terms & Conditions",
-        link: "/saloons",
+        link: "/terms",
       },
     ],
   },
@@ -124,28 +152,7 @@ export const socialLinks = [
     link: "/saloons",
   },
 ];
-export const businessTypes = [
-  {
-    imgUrl: "/icons/camera-onboard.svg",
-    title: "Photographer",
-  },
-  {
-    imgUrl: "/icons/venue-onboard.svg",
-    title: "Wedding Avenues",
-  },
-  {
-    imgUrl: "/icons/decor-onboard.svg",
-    title: "Decor",
-  },
-  {
-    imgUrl: "/icons/catering-onboard.svg",
-    title: "Catering",
-  },
-  {
-    imgUrl: "/icons/salon-onboard.svg",
-    title: "Salon",
-  },
-];
+
 export const socialDetails = [
   {
     id: 1,
@@ -186,10 +193,37 @@ export const socialDetails = [
     formName: "office_google_link",
   },
 ];
+export const CatDescription = {
+  photographer: {
+    title: "Wedding Halls And Marquees In Pakistan",
+    description:
+      "Book the best wedding venues and marquees, in Islamabad, Lahore, and Karachi and the best wedding halls in Rawalpindi to host your wedding outside under the stars or in a gorgeous hall, with Shadiyana. Glance at their menus, halls, charges, and much more.",
+  },
+  wedding_avenue: {
+    title: "Wedding Halls And Marquees In Pakistan",
+    description:
+      "Book the best wedding venues and marquees, in Islamabad, Lahore, and Karachi and the best wedding halls in Rawalpindi to host your wedding outside under the stars or in a gorgeous hall, with Shadiyana. Glance at their menus, halls, charges, and much more.",
+  },
+  decoration: {
+    title: "Wedding Halls And Marquees In Pakistan",
+    description:
+      "Book the best wedding venues and marquees, in Islamabad, Lahore, and Karachi and the best wedding halls in Rawalpindi to host your wedding outside under the stars or in a gorgeous hall, with Shadiyana. Glance at their menus, halls, charges, and much more.",
+  },
+  catering: {
+    title: "Wedding Halls And Marquees In Pakistan",
+    description:
+      "Book the best wedding venues and marquees, in Islamabad, Lahore, and Karachi and the best wedding halls in Rawalpindi to host your wedding outside under the stars or in a gorgeous hall, with Shadiyana. Glance at their menus, halls, charges, and much more.",
+  },
+  saloon: {
+    title: "Wedding Halls And Marquees In Pakistan",
+    description:
+      "Book the best wedding venues and marquees, in Islamabad, Lahore, and Karachi and the best wedding halls in Rawalpindi to host your wedding outside under the stars or in a gorgeous hall, with Shadiyana. Glance at their menus, halls, charges, and much more.",
+  },
+};
 export const CITIES = [
   {
     title: "Lahore",
-    value: "lahore",
+    value: "Lahore",
   },
   {
     title: "Karachi",
@@ -202,14 +236,6 @@ export const CITIES = [
   {
     title: "Rawalpindi",
     value: "Rawalpindi",
-  },
-  {
-    title: "Major Cities",
-    value: "major",
-  },
-  {
-    title: "All Pakistan",
-    value: "all",
   },
 ];
 export const STAFF = [

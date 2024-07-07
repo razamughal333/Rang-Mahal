@@ -28,7 +28,7 @@ const BusinessTypeTab = ({ form }: any) => {
                 defaultValue={field.value}
                 className="flex flex-wrap justify-center gap-20 px-6 max-sm:gap-12"
               >
-                {businessTypes.map(({ imgUrl, title }) => {
+                {businessTypes.map(({ imgUrl, title, value }) => {
                   return (
                     <FormItem
                       className="flex items-center space-x-3 space-y-0"
@@ -48,7 +48,7 @@ const BusinessTypeTab = ({ form }: any) => {
                       </FormLabel>
                       <FormControl>
                         <RadioGroupItem
-                          value={title}
+                          value={value}
                           className="invisible absolute"
                         />
                       </FormControl>
