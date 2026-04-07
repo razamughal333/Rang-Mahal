@@ -162,6 +162,7 @@ export async function getBusinessesByFilter(category: string, filters: any) {
     const businesses = await Business.find({
       category,
       ...newStaff,
+      status: true,
     });
     return JSON.stringify({
       businesses,

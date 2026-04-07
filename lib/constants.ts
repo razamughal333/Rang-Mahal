@@ -19,21 +19,21 @@ export const NavLinks = [
 export const items = [
   {
     id: 1,
-    title: "Adam  Joan",
-    text: 'I am thriller with the exceptional service provided by Wedding Event planning organization. They turned our wedding vision into a seamless reality, and the day was absolutly magical. "Highly recommended!".',
-    imageUrl: "/images/landing-bg.png",
+    title: "Hassan Ali",
+    text: "Ceremony Zone exceeded all expectations. Each vendor recommended by Ceremony Zone brought professionalism, talent, and a personal touch to our special day. Highly recommend for anyone seeking top-notch services for their event!",
+    imageUrl: "/images/reviews/1.jpg",
   },
   {
     id: 2,
-    title: "Adam  Joan",
-    text: 'I am thriller with the exceptional service provided by Wedding Event planning organization. They turned our wedding vision into a seamless reality, and the day was absolutly magical. "Highly recommended!".',
-    imageUrl: "/images/landing-bg.png",
+    title: "Muhammad Zubair",
+    text: "Wow! Ceremony Zone truly made our wedding day unforgettable. The Shadihalls catering was beyond delicious, the makeup salon they recommended made me feel like a princess, and the photographers captured every moment beautifully. I can't thank Ceremony Zone enough for connecting us with such amazing vendors!",
+    imageUrl: "/images/reviews/2.jpg",
   },
   {
     id: 3,
-    title: "Adam  Joan",
-    text: 'I am thriller with the exceptional service provided by Wedding Event planning organization. They turned our wedding vision into a seamless reality, and the day was absolutly magical. "Highly recommended!".',
-    imageUrl: "/images/landing-bg.png",
+    title: "Wahaj Ahmed",
+    text: "Our experience with Ceremony Zone was absolutely fantastic. The Shadihaals catering was a hit with all our guests, the makeup salon they suggested transformed me into exactly what I envisioned, and the photographers were incredibly skilled at capturing the essence of our special day. Ceremony Zone made planning our wedding stress-free and enjoyable. Highly recommend their services!",
+    imageUrl: "/images/reviews/3.jpg",
   },
 ];
 export const businessTypes = [
@@ -63,6 +63,33 @@ export const businessTypes = [
     value: "saloon",
   },
 ];
+export const serviceNavCategories = [
+  {
+    imgUrl: "/icons/camera-onboard.svg",
+    title: "Photographer/ Videographer",
+    url: "/services/photographer",
+  },
+  {
+    imgUrl: "/icons/venue-onboard.svg",
+    title: "Wedding Avenues",
+    url: "/services/wedding_avenue",
+  },
+  {
+    imgUrl: "/icons/decor-onboard.svg",
+    title: "Decorators",
+    url: "/services/decoration",
+  },
+  {
+    imgUrl: "/icons/catering-onboard.svg",
+    title: "Catering Services",
+    url: "/services/catering",
+  },
+  {
+    imgUrl: "/icons/salon-onboard.svg",
+    title: "Saloons",
+    url: "/services/saloon",
+  },
+];
 export const serviceCategories = [
   {
     img: "/images/services/photography.jpg",
@@ -85,7 +112,7 @@ export const serviceCategories = [
     url: "/services/catering",
   },
   {
-    img: "/images/services/photography.jpg",
+    img: "/images/services/saloon.jpg",
     title: "Saloons",
     url: "/services/saloon",
   },
@@ -121,7 +148,7 @@ export const footerLinks = [
     footerLinks: [
       {
         title: "About-Us",
-        link: "/about-us",
+        link: "/about",
       },
       {
         title: "Contact-Us",

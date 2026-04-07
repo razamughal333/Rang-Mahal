@@ -200,7 +200,7 @@ const Page = () => {
         >
           <div className="mr-4 mt-4 self-end">
             <p>Having trouble?</p>
-            <Link href="/contact=us" className="font-medium text-primary-900">
+            <Link href="/contact" className="font-medium text-primary-900">
               Get Help
             </Link>
           </div>

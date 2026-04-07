@@ -15,8 +15,17 @@ const Images = ({ brand_name, images }: any) => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="h-max rounded-3xl bg-primary-900 px-6 py-2 text-light-900 duration-300 hover:bg-primary-500">
-          View Images
+        <DialogTrigger className="group relative h-max rounded-3xl">
+          <Image
+            src={`/uploads/${brand_name}/${images[0]}`}
+            alt="verified"
+            className="rounded-xl [&~button]:border-none"
+            height={400}
+            width={600}
+          />
+          <div className="absolute top-0 hidden size-full items-center justify-center rounded-xl bg-dark-200/50 text-light-100 group-hover:flex">
+            <p className="h3-semibold">View more</p>
+          </div>
         </DialogTrigger>
         <DialogContent className="flex items-center border-none p-20">
           <button
