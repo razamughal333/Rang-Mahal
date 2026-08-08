@@ -228,7 +228,7 @@ const ContactForm = () => {
         </Form>
         <p className="mt-4 text-gray-600">
           You may also contact us at{" "}
-          <span className="font-bold text-primary-500">03470855791</span>
+          <span className="font-bold text-primary-500">0336-2236669</span>
         </p>
       </div>
     </div>
