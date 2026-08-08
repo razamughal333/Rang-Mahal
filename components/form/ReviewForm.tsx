@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
@@ -8,16 +9,23 @@ import { getUserById } from "@/lib/actions/user.action";
 import Image from "next/image";
 
 const Review = ({ review }: any) => {
-  const [reviewUser, setReviewUser] = useState();
+  const [reviewUser, setReviewUser] = useState<{
+    picture: string;
+    username: string;
+  } | null>(null);
+
   useEffect(() => {
     async function get() {
       const fetchedUser = await getUserById({ userId: review.user });
       const parsedUser = JSON.parse(fetchedUser);
       setReviewUser(parsedUser);
     }
+
     get();
   }, []);
+
   const date = new Date(review.createdAt);
+
   return (
     <div key={review.user} className="my-8 flex flex-col gap-4">
       <div className="flex gap-8">
@@ -30,13 +38,16 @@ const Review = ({ review }: any) => {
               width={24}
               height={24}
             />
+
             <p>{reviewUser.username}</p>
           </div>
         )}
+
         <p>
           {date.getDate()}/{date.getMonth()}/{date.getFullYear()}
         </p>
       </div>
+
       <p>{review.review}</p>
     </div>
   );
@@ -48,6 +59,7 @@ export const ReviewForm = ({ user, businessId, reviews }: any) => {
 
   async function submitReview(e: any) {
     e.preventDefault();
+
     if (!user) {
       toast({
         variant: "default",
@@ -55,12 +67,15 @@ export const ReviewForm = ({ user, businessId, reviews }: any) => {
       });
       return;
     }
+
     const res = await createReview({
       user: user._id.toString(),
       business: businessId,
       review,
     });
+
     const parsedRes = JSON.parse(res);
+
     if (parsedRes.error) {
       toast({
         variant: "default",
@@ -68,6 +83,7 @@ export const ReviewForm = ({ user, businessId, reviews }: any) => {
       });
       return;
     }
+
     toast({
       variant: "destructive",
       title: "Review submitted successfully",
@@ -78,9 +94,11 @@ export const ReviewForm = ({ user, businessId, reviews }: any) => {
   return (
     <div>
       <h3 className="h3-bold">Reviews</h3>
+
       {reviews.map((r: any) => {
         return <Review key={r.user} review={r} />;
       })}
+
       <form className="mt-8 space-y-4">
         <div className="relative">
           <Textarea
@@ -90,6 +108,7 @@ export const ReviewForm = ({ user, businessId, reviews }: any) => {
             className="form-input peer resize-none focus-visible:ring-0"
             id="review"
           />
+
           <label
             htmlFor="review"
             className="form-input-label peer-focus:text-xs"
@@ -97,6 +116,7 @@ export const ReviewForm = ({ user, businessId, reviews }: any) => {
             Review
           </label>
         </div>
+
         <Button
           className="h-max rounded-3xl bg-primary-900 px-6 py-2 text-light-900 duration-300 hover:bg-primary-500"
           type="button"
