@@ -1,15 +1,10 @@
-```tsx
 "use client";
 
 import { z } from "zod";
 
 import React, { useEffect } from "react";
 import { Button } from "../ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
@@ -30,10 +25,7 @@ import {
 } from "@radix-ui/react-popover";
 import { Calendar } from "../ui/calendar";
 import { CalendarIcon } from "lucide-react";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "@radix-ui/react-radio-group";
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { createBooking } from "@/lib/actions/booking.action";
 import { useToast } from "../ui/use-toast";
 import { loadStripe } from "@stripe/stripe-js";
@@ -126,10 +118,7 @@ const BookingForm = ({
         <h3 className="h3-semibold">Enter the booking Details</h3>
 
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="flex gap-4">
               <div>
                 <FormField
@@ -166,8 +155,7 @@ const BookingForm = ({
                               variant={"outline"}
                               className={cn(
                                 "w-[240px] pl-3 text-left font-normal",
-                                !field.value &&
-                                  "text-muted-foreground"
+                                !field.value && "text-muted-foreground"
                               )}
                             >
                               {field.value ? (
@@ -181,10 +169,7 @@ const BookingForm = ({
                           </FormControl>
                         </PopoverTrigger>
 
-                        <PopoverContent
-                          className="w-auto p-0"
-                          align="start"
-                        >
+                        <PopoverContent className="w-auto p-0" align="start">
                           <Calendar
                             mode="single"
                             className="bg-light-850"
@@ -213,35 +198,26 @@ const BookingForm = ({
                           defaultValue={field.value}
                           className="flex flex-col space-y-1"
                         >
-                          {businessPackages.map(
-                            (p: any, idx: number) => {
-                              return (
-                                <FormItem
-                                  key={idx}
-                                  className="flex-center gap-3"
-                                >
-                                  <FormControl>
-                                    <RadioGroupItem
-                                      className="size-4 rounded-full border border-solid border-gray-400 aria-checked:bg-primary-500"
-                                      value={idx.toString()}
-                                    />
-                                  </FormControl>
+                          {businessPackages.map((p: any, idx: number) => {
+                            return (
+                              <FormItem key={idx} className="flex-center gap-3">
+                                <FormControl>
+                                  <RadioGroupItem
+                                    className="size-4 rounded-full border border-solid border-gray-400 aria-checked:bg-primary-500"
+                                    value={idx.toString()}
+                                  />
+                                </FormControl>
 
-                                  <FormLabel className="!mt-0 flex gap-2">
-                                    <p className="w-max">
-                                      {p.packageName}
-                                    </p>
-
-                                    (
-                                    <p className="w-max self-end">
-                                      {p.packagePrice}
-                                    </p>
-                                    )
-                                  </FormLabel>
-                                </FormItem>
-                              );
-                            }
-                          )}
+                                <FormLabel className="!mt-0 flex gap-2">
+                                  <p className="w-max">{p.packageName}</p>(
+                                  <p className="w-max self-end">
+                                    {p.packagePrice}
+                                  </p>
+                                  )
+                                </FormLabel>
+                              </FormItem>
+                            );
+                          })}
                         </RadioGroup>
                       </FormControl>
                     </FormItem>
@@ -264,4 +240,3 @@ const BookingForm = ({
 };
 
 export default BookingForm;
-```;
